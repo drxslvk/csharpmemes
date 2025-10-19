@@ -1,0 +1,46 @@
+# сборочные каталоги
+bin/
+obj/
+
+# временные файлы dotnet
+*.tmp
+*.temp
+
+# nuget пакеты и кеши
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# логи и отладка
+*.log
+*.pdb
+
+# publish output
+publish/
+out/
+dist/
+
+# system trash
+*.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# vscode / jetbrains / visual studio (на всякий случай)
+.vscode/
+.idea/
+.vs/
+
+# файлы с пользовательскими настройками
+*.user
+*.suo
+
+# база данных и бэкапы
+*.dbmdl
+*.bak
+
+# тесты
+TestResults/
+*.coverage
+*.coveragexml
