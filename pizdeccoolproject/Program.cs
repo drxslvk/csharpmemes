@@ -53,7 +53,7 @@ class Local
 			NoteDelSuc = "Заметка удалена";
 			NoteDelErr = "Ошибка. Введите номер заметки";
 			NoteInputTxt = "Введите текст заметки";
-			HelpTxt = "Справка\nPCP - это глобальный проект,в перспективе способный перевернуть многое, но пока что, мы ограничиваемся несчастными калькулятором и заметками :(\nPizdecCoolProject. Version Alpha 1.0.2\nНажмите любую клавишу чтобы продолжить";
+			HelpTxt = "Справка\nPCP - это глобальный проект,в перспективе способный перевернуть многое, но пока что, мы ограничиваемся несчастными калькулятором и заметками :(\nPizdecCoolProject. Version Alpha 1.0.2.1\nНажмите любую клавишу чтобы продолжить";
 		}
 		else if (Settings.lang == "en")
 		{
@@ -72,7 +72,26 @@ class Local
 			NoteDelSuc = "Note deleted";
 			NoteDelErr = "Error. Enter a note number";
 			NoteInputTxt = "Input text";
-			HelpTxt = "Help\nPCP’s a global thing that’s gonna flip the world one day, but for now — yeah, it’s just a sad lil’ calculator and notes :(\nPizdecCoolProject. Version Alpha 1.0.2\nPress any key to continue";
+			HelpTxt = "Help\nPCP’s a global thing that’s gonna flip the world one day, but for now — yeah, it’s just a sad lil’ calculator and notes :(\nPizdecCoolProject. Version Alpha 1.0.2.1\nPress any key to continue";
+		}
+		else if (Settings.lang == "ge")
+		{
+			MenuTxt = "Willkommen bei PCP!\nWählen Sie den Modus: \n1. Rechner\n2. Anmerkungen\nH. Hilf\nE. Hauptmenü";
+			UnkTxt = "Unbekannter Befehl. Drücken Sie eine beliebige Taste, um fortzufahren";
+			CalcMainTxt = "Wählen Sie eine Operation:\n1. Sucht\n2. Subtraktion\n3. Multiplikation\n4. Abteilung \nE. Zurück";
+			Calc1NumTxt = "Geben Sie die 1. Zahl ein";
+			Calc2NumTxt = "Geben Sie die 2. Zahl ein";
+			Calc0Txt = "Fehler: Division durch Null!";
+			PressKey = "Drücken Sie eine beliebige Taste, um fortzufahren";
+			NoteTxt = "Anmerkungen\n\n1. Alle anzeigen\n2. Neues\n3. Notiz entfernen\nE. Zurück";
+			Note0 = "Keine Notizen gefunden";
+			NoteSave = "Erfolgen";
+			NoteDel = "Geben Sie die Nummer der zu löschenden Notiz ein";
+			NoteDelFail = "Notiz nicht gefunden";
+			NoteDelSuc = "Notiz gelöscht";
+			NoteDelErr = "Fehlermeldung. Geben Sie eine Notiznummer ein";
+			NoteInputTxt = "Eingabetext";
+			HelpTxt = "Hilfe\nPCP ist eine globale Sache, die eines Tages die Welt verändern wird, aber für den Moment — ja, es ist nur ein trauriger kleiner Taschenrechner und Notizen :(\nPizdecCoolProjekt. Version Alpha 1.0.2.1\nDrücken Sie eine beliebige Taste, um fortzufahren";
 		}
 		else
 		{
@@ -123,7 +142,7 @@ class Program
 		{
 			Console.Clear();
 			Console.WriteLine("Hello. Welcome to PizdecCoolProject!");
-			Console.WriteLine("Choose your language:\n1.Russian 2.English\nPress E for exit");
+			Console.WriteLine("Choose your language:\n1.Russian 2.English 3.German\nPress E for exit");
 			string lang = Console.ReadLine()?.Trim().ToLower();
 			if (lang == "e") break;
 			if (lang == "1") {
@@ -132,6 +151,10 @@ class Program
 			}
 			else if (lang == "2") {
 				Settings.lang = "en";
+				Menu();
+			}
+			else if (lang == "3") {
+				Settings.lang  = "ge";
 				Menu();
 			}
 			else
