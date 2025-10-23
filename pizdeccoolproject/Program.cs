@@ -2,8 +2,33 @@
 using System.Collections.Generic;
 using System.IO;
 
-class Calc
+class CalcSys
 {
+	private static string filePath = "calchis.pcp";
+	private static List<string> calchis = new List<string>();
+	
+	public string Result;
+
+	public static void Init()
+	{
+		if (!File.Exists(filePath))
+			File.WriteAllText(filePath, "");
+
+		calchis = new List<string>(File.ReadAllLines(filePath));
+	}
+	
+	public static List<string> GetHis()
+	{
+		return new List<string>(calchis);
+	}
+
+	public void Add(string text)
+	{
+		if (string.IsNullOrWhiteSpace(text)) return;
+		calchis.Add(text);
+		File.AppendAllText(filePath, text + "\n");
+	}
+
 	public double a, b;
 	public double Summ() => a + b;
 	public double Minus() => a - b;
@@ -22,6 +47,7 @@ class Local
 	public static string Calc1NumTxt;
 	public static string Calc2NumTxt;
 	public static string Calc0Txt;
+	public static string CalcHis0;
 	public static string NoteTxt;
 	public static string Note0;
 	public static string NoteSave;
@@ -40,10 +66,11 @@ class Local
 		{
 			MenuTxt = "Добро пожаловать в PCP!\nВыберите режим работы:\n1. Калькулятор\n2. Заметки\nH. Справка\nE. Выход в меню";
 			UnkTxt = "Неизвестная команда. Нажмите любую клавишу чтобы продолжить";
-			CalcMainTxt = "Выберите действие:\n1. Сложение\n2. Вычитание\n3. Умножение\n4. Деление\nE. Выход в меню";
+			CalcMainTxt = "Выберите действие:\n1. Сложение\n2. Вычитание\n3. Умножение\n4. Деление\nH. История вычислений\nE. Выход в меню";
 			Calc1NumTxt = "Введите первое число";
 			Calc2NumTxt = "Введите второе число";
 			Calc0Txt = "Ошибка: деление на ноль!";
+			CalcHis0 = "История не обнаружена";
 			PressKey = "Нажмите любую клавишу для продолжения";
 			NoteTxt = "Заметки\n\n1. Показать все\n2. Добавить\n3. Удалить\nE. Выход в меню";
 			Note0 = "Заметки не обнаружены";
@@ -53,16 +80,17 @@ class Local
 			NoteDelSuc = "Заметка удалена";
 			NoteDelErr = "Ошибка. Введите номер заметки";
 			NoteInputTxt = "Введите текст заметки";
-			HelpTxt = "Справка\nPCP - это глобальный проект,в перспективе способный перевернуть многое, но пока что, мы ограничиваемся несчастными калькулятором и заметками :(\nPizdecCoolProject. Version Alpha 1.0.2.1\nНажмите любую клавишу чтобы продолжить";
+			HelpTxt = "Справка\nPCP - это глобальный проект,в перспективе способный перевернуть многое, но пока что, мы ограничиваемся несчастными калькулятором и заметками :(\nPizdecCoolProject. Version Alpha 1.0.3\nНажмите любую клавишу чтобы продолжить";
 		}
 		else if (Settings.lang == "en")
 		{
 			MenuTxt = "Welcome to PCP!\nChoose mode:\n1. Calculator\n2. Notes\nH. Help\nE. Main menu";
 			UnkTxt = "Unknown command. Press any key to continue";
-			CalcMainTxt = "Choose an operation:\n1. Addiction\n2. Subtraction\n3. Multiplication\n4. Divition\nE. Back";
+			CalcMainTxt = "Choose an operation:\n1. Addiction\n2. Subtraction\n3. Multiplication\n4. Divition\nH. Calculating history\nE. Back";
 			Calc1NumTxt = "Enter the 1st number";
 			Calc2NumTxt = "Enter the 2nd number";
 			Calc0Txt = "Error: Divition by zero!";
+			CalcHis0 = "No calculation history found";
 			PressKey = "Press any key to continue";
 			NoteTxt = "Notes\n\n1. Show all\n2. Add new\n3. Remove note\nE. Back";
 			Note0 = "No notes found";
@@ -72,16 +100,17 @@ class Local
 			NoteDelSuc = "Note deleted";
 			NoteDelErr = "Error. Enter a note number";
 			NoteInputTxt = "Input text";
-			HelpTxt = "Help\nPCP’s a global thing that’s gonna flip the world one day, but for now — yeah, it’s just a sad lil’ calculator and notes :(\nPizdecCoolProject. Version Alpha 1.0.2.1\nPress any key to continue";
+			HelpTxt = "Help\nPCP’s a global thing that’s gonna flip the world one day, but for now — yeah, it’s just a sad lil’ calculator and notes :(\nPizdecCoolProject. Version Alpha 1.0.3\nPress any key to continue";
 		}
 		else if (Settings.lang == "ge")
 		{
 			MenuTxt = "Willkommen bei PCP!\nWählen Sie den Modus: \n1. Rechner\n2. Anmerkungen\nH. Hilf\nE. Hauptmenü";
 			UnkTxt = "Unbekannter Befehl. Drücken Sie eine beliebige Taste, um fortzufahren";
-			CalcMainTxt = "Wählen Sie eine Operation:\n1. Sucht\n2. Subtraktion\n3. Multiplikation\n4. Abteilung \nE. Zurück";
+			CalcMainTxt = "Wählen Sie eine Operation:\n1. Sucht\n2. Subtraktion\n3. Multiplikation\n4. Abteilung \nH. Geschichte der Berechnung\nE. Zurück";
 			Calc1NumTxt = "Geben Sie die 1. Zahl ein";
 			Calc2NumTxt = "Geben Sie die 2. Zahl ein";
 			Calc0Txt = "Fehler: Division durch Null!";
+			CalcHis0 = "Der Berechnungsverlauf wurde nicht gefunden";
 			PressKey = "Drücken Sie eine beliebige Taste, um fortzufahren";
 			NoteTxt = "Anmerkungen\n\n1. Alle anzeigen\n2. Neues\n3. Notiz entfernen\nE. Zurück";
 			Note0 = "Keine Notizen gefunden";
@@ -91,7 +120,7 @@ class Local
 			NoteDelSuc = "Notiz gelöscht";
 			NoteDelErr = "Fehlermeldung. Geben Sie eine Notiznummer ein";
 			NoteInputTxt = "Eingabetext";
-			HelpTxt = "Hilfe\nPCP ist eine globale Sache, die eines Tages die Welt verändern wird, aber für den Moment — ja, es ist nur ein trauriger kleiner Taschenrechner und Notizen :(\nPizdecCoolProjekt. Version Alpha 1.0.2.1\nDrücken Sie eine beliebige Taste, um fortzufahren";
+			HelpTxt = "Hilfe\nPCP ist eine globale Sache, die eines Tages die Welt verändern wird, aber für den Moment — ja, es ist nur ein trauriger kleiner Taschenrechner und Notizen :(\nPizdecCoolProjekt. Version Alpha 1.0.3\nDrücken Sie eine beliebige Taste, um fortzufahren";
 		}
 		else
 		{
@@ -211,20 +240,35 @@ class Program
 	}
 	static void Calc()
 	{
-		var calc = new Calc();
+		CalcSys.Init();
+		var calc = new CalcSys();
 		Local.StartCode();
 
 		while (true)
 		{
 			Console.WriteLine($"{Local.CalcMainTxt}");
                                	string Calc = Console.ReadLine()?.Trim().ToLower();
-
+				var his = CalcSys.GetHis();
+				
 				if (Calc == "E" || Calc == "e") break;
-			{
-                               	Console.Clear();
+				if (Calc == "H" || Calc == "h")
+				{
+					Console.Clear();
+					if (his.Count == 0)
+					{
+					Console.WriteLine($"{Local.CalcHis0}");
+					}
+					else
+					{
+					for (int i = 0; i < his.Count; i++)
+					Console.WriteLine($"{i+1}. {his[i]}");
+					}
+				}
+
 
 				if (Calc == "1" || Calc == "2" || Calc == "3" || Calc == "4")
                                 {
+					Console.Clear();
 
 					Console.WriteLine($"{Local.Calc1NumTxt}");
                      			calc.a = double.Parse(Console.ReadLine());
@@ -235,21 +279,35 @@ class Program
                                		switch (Calc)
                                		{
                                        		case "1":
-							Console.WriteLine($"{calc.a} + {calc.b} = {calc.Summ()}");
+							calc.Result = $"{calc.a} + {calc.b} = {calc.Summ()}";
+							Console.WriteLine(calc.Result);
+							calc.Add($"{calc.Result}		<{DateTime.Now}>");
 							break;
 						case "2":
-							Console.WriteLine($"{calc.a} - {calc.b} = {calc.Minus()}");
+							calc.Result = $"{calc.a} - {calc.b} = {calc.Minus()}";
+							Console.WriteLine(calc.Result);
+							calc.Add($"{calc.Result}		<{DateTime.Now}>");
 							break;
 						case "3":
-							Console.WriteLine($"{calc.a} x {calc.b} = {calc.X()}");
+							calc.Result = $"{calc.a} x {calc.b} = {calc.X()}";
+							Console.WriteLine(calc.Result);
+							calc.Add($"{calc.Result}		<{DateTime.Now}>");
 							break;
 						case "4":
 							if (calc.b != 0)
-								Console.WriteLine($"{calc.a} : {calc.b} = {calc.RR()}");
+							{
+								calc.Result = $"{calc.a} : {calc.b} = {calc.RR()}";
+								Console.WriteLine(calc.Result);
+								calc.Add($"{calc.Result}		<{DateTime.Now}>");
+							}
 							else
 								Console.WriteLine($"{Local.Calc0Txt}");
 							break;
 					}
+				}
+				else if (Calc == "h" || Calc =="H")
+				{
+					Console.WriteLine();
 				}
 				else
 				{
@@ -258,7 +316,6 @@ class Program
 				Console.WriteLine($"{Local.PressKey}");
 				Console.ReadKey();
 				Console.Clear();
-			}
 		}
 	}
 
@@ -313,7 +370,7 @@ class Program
 		Console.Clear();
 		Console.WriteLine($"{Local.NoteInputTxt}\n");
 		string NoteText = Console.ReadLine();
-		NoteSys.Add(NoteText);
+		NoteSys.Add($"{NoteText}		<{DateTime.Now}>");
 		Console.WriteLine($"{Local.NoteSave}. {Local.PressKey}");
 		Console.ReadKey();
 	}
