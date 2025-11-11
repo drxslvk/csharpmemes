@@ -42,29 +42,35 @@ class Settings
 }
 class Local
 {
-	public static string MenuTxt;
-	public static string CalcMainTxt;
-	public static string Calc1NumTxt;
-	public static string Calc2NumTxt;
-	public static string Calc0Txt;
-	public static string CalcHis0;
-	public static string NoteTxt;
-	public static string Note0;
-	public static string NoteSave;
-	public static string NoteInputTxt;
-	public static string NoteDel;
-	public static string NoteDelFail;
-	public static string NoteDelSuc;
-	public static string NoteDelErr;	
-	public static string HelpTxt;
-	public static string UnkTxt;
-	public static string PressKey;
+	public static string MenuTxt = "";
+	public static string CalcMainTxt = "";
+	public static string Calc1NumTxt = "";
+	public static string Calc2NumTxt = "";
+	public static string Calc0Txt = "";
+	public static string CalcHis0 = "";
+	public static string NoteTxt = "";
+	public static string Note0 = "";
+	public static string NoteSave = "";
+	public static string NoteInputTxt = "";
+	public static string NoteDel = "";
+	public static string NoteDelFail = "";
+	public static string NoteDelSuc = "";
+	public static string NoteDelErr = "";	
+	public static string HelpTxt = "";
+	public static string UnkTxt = "";
+	public static string PressKey = "";
+	public static string GameNumIntroTxt = "";
+	public static string GameNumInputTxt = "";
+	public static string GameNumAttLessTxt = "";
+	public static string GameNumAttMoreTxt = "";
+	public static string GameNumWinTxt = "";
+	public static string GameNumLoseTxt = "";
 
 	public static void StartCode()
 	{
 		if (Settings.lang == "ru")
 		{
-			MenuTxt = "Добро пожаловать в PCP!\nВыберите режим работы:\n1. Калькулятор\n2. Заметки\nH. Справка\nE. Выход в меню";
+			MenuTxt = "Добро пожаловать в PCP!\nВыберите режим работы:\n1. Калькулятор\n2. Заметки\n3. Мини-игра \nH. Справка\nE. Выход в меню";
 			UnkTxt = "Неизвестная команда. Нажмите любую клавишу чтобы продолжить";
 			CalcMainTxt = "Выберите действие:\n1. Сложение\n2. Вычитание\n3. Умножение\n4. Деление\nH. История вычислений\nE. Выход в меню";
 			Calc1NumTxt = "Введите первое число";
@@ -80,11 +86,17 @@ class Local
 			NoteDelSuc = "Заметка удалена";
 			NoteDelErr = "Ошибка. Введите номер заметки";
 			NoteInputTxt = "Введите текст заметки";
-			HelpTxt = "Справка\nPCP - это глобальный проект,в перспективе способный перевернуть многое, но пока что, мы ограничиваемся несчастными калькулятором и заметками :(\nPizdecCoolProject. Version Alpha 1.0.3\nНажмите любую клавишу чтобы продолжить";
+			HelpTxt = "Справка\nPCP - это глобальный проект,в перспективе способный перевернуть многое, но пока что, мы ограничиваемся несчастными калькулятором и заметками :(\nPizdecCoolProject. Version Alpha 1.1\nНажмите любую клавишу чтобы продолжить";
+			GameNumIntroTxt = "Угадай число от 1 до 500! У тебя есть 10 попыток.";
+			GameNumInputTxt = "Введи число: ";
+			GameNumAttLessTxt = "Меньше! Попыток осталось: ";
+			GameNumAttMoreTxt = "Больше! Попыток осталось: ";
+			GameNumWinTxt = "Поздравляю! Ты угадал число!";
+			GameNumLoseTxt = "Ты проиграл! Загаданное число было: ";
 		}
 		else if (Settings.lang == "en")
 		{
-			MenuTxt = "Welcome to PCP!\nChoose mode:\n1. Calculator\n2. Notes\nH. Help\nE. Main menu";
+			MenuTxt = "Welcome to PCP!\nChoose mode:\n1. Calculator\n2. Notes\n3. Mini game\nH. Help\nE. Main menu";
 			UnkTxt = "Unknown command. Press any key to continue";
 			CalcMainTxt = "Choose an operation:\n1. Addiction\n2. Subtraction\n3. Multiplication\n4. Divition\nH. Calculating history\nE. Back";
 			Calc1NumTxt = "Enter the 1st number";
@@ -100,11 +112,17 @@ class Local
 			NoteDelSuc = "Note deleted";
 			NoteDelErr = "Error. Enter a note number";
 			NoteInputTxt = "Input text";
-			HelpTxt = "Help\nPCP’s a global thing that’s gonna flip the world one day, but for now — yeah, it’s just a sad lil’ calculator and notes :(\nPizdecCoolProject. Version Alpha 1.0.3\nPress any key to continue";
+			HelpTxt = "Help\nPCP’s a global thing that’s gonna flip the world one day, but for now — yeah, it’s just a sad lil’ calculator and notes :(\nPizdecCoolProject. Version Alpha 1.1\nPress any key to continue";
+			GameNumIntroTxt = "Guess a number between 1 and 500! You have 10 attempts.";
+			GameNumInputTxt = "Enter number: ";
+			GameNumAttLessTxt = "Less! Attempts left: ";
+			GameNumAttMoreTxt = "More! Attempts left: ";
+			GameNumWinTxt = "Congratulations! You guessed the number!";
+			GameNumLoseTxt = "You lost! The number was: ";
 		}
 		else if (Settings.lang == "ge")
 		{
-			MenuTxt = "Willkommen bei PCP!\nWählen Sie den Modus: \n1. Rechner\n2. Anmerkungen\nH. Hilf\nE. Hauptmenü";
+			MenuTxt = "Willkommen bei PCP!\nWählen Sie den Modus: \n1. Rechner\n2. Anmerkungen\n3. Minispiel\nH. Hilfe\nE. Hauptmenü";
 			UnkTxt = "Unbekannter Befehl. Drücken Sie eine beliebige Taste, um fortzufahren";
 			CalcMainTxt = "Wählen Sie eine Operation:\n1. Sucht\n2. Subtraktion\n3. Multiplikation\n4. Abteilung \nH. Geschichte der Berechnung\nE. Zurück";
 			Calc1NumTxt = "Geben Sie die 1. Zahl ein";
@@ -120,11 +138,17 @@ class Local
 			NoteDelSuc = "Notiz gelöscht";
 			NoteDelErr = "Fehlermeldung. Geben Sie eine Notiznummer ein";
 			NoteInputTxt = "Eingabetext";
-			HelpTxt = "Hilfe\nPCP ist eine globale Sache, die eines Tages die Welt verändern wird, aber für den Moment — ja, es ist nur ein trauriger kleiner Taschenrechner und Notizen :(\nPizdecCoolProjekt. Version Alpha 1.0.3\nDrücken Sie eine beliebige Taste, um fortzufahren";
+			HelpTxt = "Hilfe\nPCP ist eine globale Sache, die eines Tages die Welt verändern wird, aber für den Moment — ja, es ist nur ein trauriger kleiner Taschenrechner und Notizen :(\nPizdecCoolProjekt. Version Alpha 1.1\nDrücken Sie eine beliebige Taste, um fortzufahren";
+			GameNumIntroTxt = "Erraten Sie eine Zahl zwischen 1 und 500! Sie haben 10 Versuche.";
+			GameNumInputTxt = "Nummer eingeben: ";
+			GameNumAttLessTxt = "Weniger! Verbleibende Versuche: ";
+			GameNumAttMoreTxt = "Mehr! Verbleibende Versuche: ";
+			GameNumWinTxt = "Herzlichen Glückwunsch! Sie haben die Zahl erraten!";
+			GameNumLoseTxt = "Du hast verloren! Die Zahl war: ";
 		}
 		else
 		{
-               		Settings.lang = "err";
+			Settings.lang = "err";
 		}
 	}	
 }
@@ -209,11 +233,15 @@ class Program
 				Console.Clear();
 				if (Menu == "1")
 				{
-					Calc();			
+					Calc();
 				}
 				else if (Menu == "2")
 				{
 					Notes();
+				}
+				else if (Menu == "3")
+				{
+					MiniGame();
 				}
 				else if (Menu == "H" || Menu == "h")
 				{
@@ -401,4 +429,42 @@ class Program
 		}
 		Console.ReadKey();
 	}
+	public static void MiniGame()
+    {
+		Local.StartCode();
+		Console.Clear();
+		Random rand = new Random();
+		int GameNum = rand.Next(1, 500);
+		int Attempts = 10;
+		Console.WriteLine($"{Local.GameNumIntroTxt}");
+		while (Attempts > 0)
+		{
+			if (int.TryParse(Console.ReadLine(), out int UserNum))
+			{
+				Console.Clear();
+				if (UserNum < GameNum)
+				{
+					Attempts--;
+					Console.WriteLine($"{Local.GameNumAttLessTxt}{Attempts}");
+				}
+				else if (UserNum > GameNum)
+				{
+					Attempts--;
+					Console.WriteLine($"{Local.GameNumAttMoreTxt}{Attempts}");
+				}
+				else
+				{
+					Console.WriteLine($"{Local.GameNumWinTxt}");
+					break;
+				}
+			}
+			else
+			{
+				Console.Clear();
+				Console.WriteLine($"{Local.UnkTxt}");
+			}
+		}
+		Console.WriteLine($"{Local.GameNumLoseTxt}{GameNum}\n{Local.PressKey}");
+		Console.ReadKey();
+    }
 }
