@@ -39,6 +39,7 @@ class CalcSys
 class Settings
 {
 	public static string lang;
+	public static int Attempts = 10;
 }
 class Local
 {
@@ -65,6 +66,7 @@ class Local
 	public static string GameNumAttMoreTxt = "";
 	public static string GameNumWinTxt = "";
 	public static string GameNumLoseTxt = "";
+	public static string GameNumAttCounterTxt = "";
 
 	public static void StartCode()
 	{
@@ -89,8 +91,9 @@ class Local
 			HelpTxt = "Справка\nPCP - это глобальный проект,в перспективе способный перевернуть многое, но пока что, мы ограничиваемся несчастными калькулятором и заметками :(\nPizdecCoolProject. Version Alpha 1.1\nНажмите любую клавишу чтобы продолжить";
 			GameNumIntroTxt = "Угадай число от 1 до 500! У тебя есть 10 попыток.";
 			GameNumInputTxt = "Введи число: ";
-			GameNumAttLessTxt = "Меньше! Попыток осталось: ";
-			GameNumAttMoreTxt = "Больше! Попыток осталось: ";
+			GameNumAttLessTxt = "Меньше!";
+			GameNumAttMoreTxt = "Больше!";
+			GameNumAttCounterTxt = $"Попыток осталось: {Settings.Attempts}";
 			GameNumWinTxt = "Поздравляю! Ты угадал число!";
 			GameNumLoseTxt = "Ты проиграл! Загаданное число было: ";
 		}
@@ -115,8 +118,9 @@ class Local
 			HelpTxt = "Help\nPCP’s a global thing that’s gonna flip the world one day, but for now — yeah, it’s just a sad lil’ calculator and notes :(\nPizdecCoolProject. Version Alpha 1.1\nPress any key to continue";
 			GameNumIntroTxt = "Guess a number between 1 and 500! You have 10 attempts.";
 			GameNumInputTxt = "Enter number: ";
-			GameNumAttLessTxt = "Less! Attempts left: ";
-			GameNumAttMoreTxt = "More! Attempts left: ";
+			GameNumAttLessTxt = "Less!";
+			GameNumAttMoreTxt = "More!";
+			GameNumAttCounterTxt = $"Attempts left: {Settings.Attempts}";
 			GameNumWinTxt = "Congratulations! You guessed the number!";
 			GameNumLoseTxt = "You lost! The number was: ";
 		}
@@ -141,8 +145,9 @@ class Local
 			HelpTxt = "Hilfe\nPCP ist eine globale Sache, die eines Tages die Welt verändern wird, aber für den Moment — ja, es ist nur ein trauriger kleiner Taschenrechner und Notizen :(\nPizdecCoolProjekt. Version Alpha 1.1\nDrücken Sie eine beliebige Taste, um fortzufahren";
 			GameNumIntroTxt = "Erraten Sie eine Zahl zwischen 1 und 500! Sie haben 10 Versuche.";
 			GameNumInputTxt = "Nummer eingeben: ";
-			GameNumAttLessTxt = "Weniger! Verbleibende Versuche: ";
-			GameNumAttMoreTxt = "Mehr! Verbleibende Versuche: ";
+			GameNumAttLessTxt = "Weniger!";
+			GameNumAttMoreTxt = "Mehr!";
+			GameNumAttCounterTxt = $"Verbleibende Versuche: {Settings.Attempts}";
 			GameNumWinTxt = "Herzlichen Glückwunsch! Sie haben die Zahl erraten!";
 			GameNumLoseTxt = "Du hast verloren! Die Zahl war: ";
 		}
@@ -430,41 +435,60 @@ class Program
 		Console.ReadKey();
 	}
 	public static void MiniGame()
-    {
+	{
+		Settings.Attempts = 10;
 		Local.StartCode();
 		Console.Clear();
 		Random rand = new Random();
 		int GameNum = rand.Next(1, 500);
-		int Attempts = 10;
 		Console.WriteLine($"{Local.GameNumIntroTxt}");
-		while (Attempts > 0)
-		{
-			if (int.TryParse(Console.ReadLine(), out int UserNum))
+		while (true)
+        {
+			if (Settings.Attempts > 0)
 			{
-				Console.Clear();
-				if (UserNum < GameNum)
+				if (int.TryParse(Console.ReadLine(), out int UserNum))
 				{
-					Attempts--;
-					Console.WriteLine($"{Local.GameNumAttLessTxt}{Attempts}");
-				}
-				else if (UserNum > GameNum)
-				{
-					Attempts--;
-					Console.WriteLine($"{Local.GameNumAttMoreTxt}{Attempts}");
+					if (UserNum == GameNum)
+					{
+						Console.Clear();
+						Console.WriteLine($"{Local.GameNumWinTxt}");
+						Console.WriteLine($"{Local.PressKey}");
+						Console.ReadKey();
+						break;
+					}
+					else if (UserNum < GameNum)
+					{
+						Settings.Attempts--;
+						Local.StartCode();
+						Console.Clear();
+						Console.Write($"{Local.GameNumAttMoreTxt} ");
+						Console.WriteLine($"{Local.GameNumAttCounterTxt}");
+						Console.WriteLine($"{Local.GameNumInputTxt}");
+					}
+					else if (UserNum > GameNum)
+					{
+						Settings.Attempts--;
+						Local.StartCode();
+						Console.Clear();
+						Console.Write($"{Local.GameNumAttLessTxt} ");
+						Console.WriteLine($"{Local.GameNumAttCounterTxt}");
+						Console.WriteLine($"{Local.GameNumInputTxt}");
+					}
 				}
 				else
 				{
-					Console.WriteLine($"{Local.GameNumWinTxt}");
-					break;
+					Console.WriteLine($"{Local.UnkTxt}");
+					Console.ReadKey();
 				}
 			}
 			else
 			{
 				Console.Clear();
-				Console.WriteLine($"{Local.UnkTxt}");
-			}
-		}
-		Console.WriteLine($"{Local.GameNumLoseTxt}{GameNum}\n{Local.PressKey}");
-		Console.ReadKey();
+				Console.WriteLine($"{Local.GameNumLoseTxt} {GameNum}");
+				Console.WriteLine($"{Local.PressKey}");
+				Console.ReadKey();
+				break;
+            }
+        }
     }
 }
