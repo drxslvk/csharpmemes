@@ -44,3 +44,5 @@ ehthumbs.db
 TestResults/
 *.coverage
 *.coveragexml
+pizdeccoolproject/calchis.pcp
+pizdeccoolproject/notes.pcp
