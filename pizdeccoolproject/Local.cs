@@ -28,6 +28,7 @@ public class Local
 	public static string GameNumWinTxt = "";
 	public static string GameNumLoseTxt = "";
 	public static string GameNumAttCounterTxt = "";
+	public static string LangChCLI = "";
 
 	public static void StartCode()
 	{
@@ -57,6 +58,7 @@ public class Local
 			GameNumAttCounterTxt = $"Попыток осталось: {Settings.Attempts}";
 			GameNumWinTxt = "Поздравляю! Ты угадал число!";
 			GameNumLoseTxt = "Ты проиграл! Загаданное число было: ";
+			LangChCLI = "Язык изменен на русский";
 		}
 		else if (Settings.lang == "en")
 		{
@@ -84,6 +86,8 @@ public class Local
 			GameNumAttCounterTxt = $"Attempts left: {Settings.Attempts}";
 			GameNumWinTxt = "Congratulations! You guessed the number!";
 			GameNumLoseTxt = "You lost! The number was: ";
+			LangChCLI = "Language set to English";
+
 		}
 		else if (Settings.lang == "ge")
 		{
@@ -111,6 +115,8 @@ public class Local
 			GameNumAttCounterTxt = $"Verbleibende Versuche: {Settings.Attempts}";
 			GameNumWinTxt = "Herzlichen Glückwunsch! Sie haben die Zahl erraten!";
 			GameNumLoseTxt = "Du hast verloren! Die Zahl war: ";
+			LangChCLI = "Sprache auf Deutsch umgestellt";
+
 		}
 		else
 		{

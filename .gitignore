@@ -1,6 +1,8 @@
 # сборочные каталоги
 bin/
 obj/
+modules/*
+!modules/hwmodule.cs
 
 # временные файлы dotnet
 *.tmp

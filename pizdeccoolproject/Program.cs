@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using modules;
 
 class Settings
 {
 	public static string lang;
 	public static int Attempts = 10;
 }
-
-class Program
+class Module
 {
-	static void Main(string[] args)
+    public static void ModStart()
+    {
+        var engine = new ModuleEngine("C:/Users/drxslvk/code/csharpmemes/pizdeccoolproject/modules");
+        engine.QLoadModules();
+    }
+}
+public class Program
+{
+	public static void Main(string[] args)
 	{
 		while (true)
 		{
@@ -18,7 +26,12 @@ class Program
 			Console.WriteLine("Hello. Welcome to PizdecCoolProject!");
 			Console.WriteLine("Choose your language:\n1.Russian 2.English 3.German\nPress E for exit");
 			string lang = Console.ReadLine()?.Trim().ToLower();
-			if (lang == "e") break;
+			if (lang == "e") 
+			{		
+				Console.Clear();
+				Console.WriteLine("Goodbye. See you again <3");
+				Environment.Exit(0);
+			}
 			if (lang == "1") {
 				Settings.lang = "ru";
 				Menu();
@@ -37,11 +50,10 @@ class Program
 				Console.ReadKey();
 			}
 		}
-		Console.Clear();
-		Console.WriteLine("Goodbye. See you again <3");
+
 	}
 
-	static void Menu()
+	public static void Menu()
 	{
 		Local.StartCode();
 		while (true)
@@ -70,8 +82,14 @@ class Program
 					Console.WriteLine($"{Local.HelpTxt}");
 					Console.ReadKey();
 				}
+				else if (Menu == "I" || Menu == "i")
+                {
+					Console.Clear();
+                    CliSys.Start();
+                }
 				else if (Menu == "E" || Menu == "e")
 				{
+					Main([]);
 					break;
 				}
 				else
@@ -87,8 +105,9 @@ class Program
 			}
 		}
 	}
-	static void Calc()
+	public static void Calc()
 	{
+		Console.Clear();
 		CalcSys.Init();
 		var calc = new CalcSys();
 		Local.StartCode();
@@ -99,7 +118,10 @@ class Program
                 string Calc = Console.ReadLine()?.Trim().ToLower();
 				var his = CalcSys.GetHis();
 				
-				if (Calc == "E" || Calc == "e") break;
+				if (Calc == "E" || Calc == "e") {
+					Console.Clear();
+					break;
+				}
 				else if (Calc == "H" || Calc == "h")
 				{
 					Console.Clear();
@@ -167,6 +189,7 @@ class Program
 	
 	public static void Notes()
 	{
+		Console.Clear();
 		Local.StartCode();
 		NoteSys.Init();
 
@@ -180,7 +203,10 @@ class Program
 			if (Mode == "1") ShowNotes();
 			else if (Mode == "2") AddNote();
 			else if (Mode == "3") DelNote();
-			else if (Mode == "E" || Mode == "e") break;
+			else if (Mode == "E" || Mode == "e") {
+				Console.Clear();
+				break;
+			}
 			else
 			{
 				Console.WriteLine($"{Local.UnkTxt}");
@@ -246,6 +272,7 @@ class Program
 	}
 	public static void MiniGame()
 	{
+		Console.Clear();
 		Settings.Attempts = 10;
 		Local.StartCode();
 		Console.Clear();
