@@ -12,7 +12,7 @@ class Module
 {
     public static void ModStart()
     {
-        var engine = new ModuleEngine("C:/Users/drxslvk/code/csharpmemes/pizdeccoolproject/modules");
+        var engine = new ModuleEngine("./modules");
         engine.QLoadModules();
     }
 }

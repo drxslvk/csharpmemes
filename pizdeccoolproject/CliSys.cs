@@ -7,7 +7,7 @@ public class CliSys
 {
     public static void Start()
     {        
-        var engine = new ModuleEngine("C:/Users/drxslvk/code/csharpmemes/pizdeccoolproject/modules");
+        var engine = new ModuleEngine("./modules");
         Console.WriteLine("CLI-mode");
         while (true) {
             Console.Write(">");
