@@ -1,8 +1,8 @@
 # сборочные каталоги
 bin/
 obj/
-modules/*
-!modules/hwmodule.cs
+pizdeccoolproject/modules
+!pizdeccoolproject/modules/hwmodule.cs
 
 # временные файлы dotnet
 *.tmp
